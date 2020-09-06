@@ -3,18 +3,18 @@
 namespace TimelineDataExporter.Windows
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainMenuWindow.xaml
     /// </summary>
-    public partial class MainMenu : Window
+    public partial class MainMenuWindow : Window
     {
-        public MainMenu()
+        public MainMenuWindow()
         {
             InitializeComponent();
         }
 
         private void OnNewEntryButtonClicked(object sender, RoutedEventArgs e)
         {
-            var newDataEntryWindow = new NewDataEntry();
+            var newDataEntryWindow = new NewDataEntryWindow();
             newDataEntryWindow.Show();
         }
     }
