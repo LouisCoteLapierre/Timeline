@@ -23,6 +23,8 @@ namespace TimelineDataExporter.Windows
                 StartDate = StartDatePicker.SelectedDate,
                 EndDate = EndDatePicker.SelectedDate
             };
+
+
         }
     }
 }

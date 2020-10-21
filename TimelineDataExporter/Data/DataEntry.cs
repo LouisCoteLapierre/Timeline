@@ -1,8 +1,10 @@
 ﻿using System;
 
+using TimelineDataExporter.Serialization;
+
 namespace TimelineDataExporter.Data
 {
-    class DataEntry
+    public class DataEntry : IJsonSerializable
     {
         public string Title { get; set; }
         public string Description { get; set; }

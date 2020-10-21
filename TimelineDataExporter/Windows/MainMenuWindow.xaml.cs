@@ -17,5 +17,10 @@ namespace TimelineDataExporter.Windows
             var newDataEntryWindow = new NewDataEntryWindow();
             newDataEntryWindow.Show();
         }
+
+        private void OnViewExistingEntriesButtonClicked(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
