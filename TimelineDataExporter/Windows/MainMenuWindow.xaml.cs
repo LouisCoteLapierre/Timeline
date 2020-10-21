@@ -12,15 +12,10 @@ namespace TimelineDataExporter.Windows
             InitializeComponent();
         }
 
-        private void OnNewEntryButtonClicked(object sender, RoutedEventArgs e)
+        private void OnViewDataButtonClicked(object sender, RoutedEventArgs e)
         {
-            var newDataEntryWindow = new NewDataEntryWindow();
-            newDataEntryWindow.Show();
-        }
-
-        private void OnViewExistingEntriesButtonClicked(object sender, RoutedEventArgs e)
-        {
-            
+            var dataWindow = new DataWindow();
+            dataWindow.Show();
         }
     }
 }

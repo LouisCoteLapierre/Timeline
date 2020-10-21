@@ -60,10 +60,11 @@
     </ApplicationDefinition>
     <Compile Include="Data\DataEntry.cs" />
     <Compile Include="Data\DataEntryContainer.cs" />
+    <Compile Include="Enums\TimelineHistoricPeriod.cs" />
+    <Compile Include="Models\DataModel.cs" />
     <Compile Include="Serialization\IJsonSerializable.cs" />
-    <Compile Include="Serialization\JsonManager.cs" />
-    <Compile Include="Windows\NewDataEntryWindow.xaml.cs">
-      <DependentUpon>NewDataEntryWindow.xaml</DependentUpon>
+    <Compile Include="Windows\DataWindow.xaml.cs">
+      <DependentUpon>DataWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Styles\TextBoxStyles.xaml">
       <SubType>Designer</SubType>
@@ -81,7 +82,7 @@
       <DependentUpon>MainMenuWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Windows\NewDataEntryWindow.xaml">
+    <Page Include="Windows\DataWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
