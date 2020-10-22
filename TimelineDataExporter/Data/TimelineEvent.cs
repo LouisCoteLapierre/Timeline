@@ -4,7 +4,7 @@ using TimelineDataExporter.Serialization;
 
 namespace TimelineDataExporter.Data
 {
-    public class DataEntry : IJsonSerializable
+    public class TimelineEvent : IJsonSerializable
     {
         public string Title { get; set; }
         public string Description { get; set; }

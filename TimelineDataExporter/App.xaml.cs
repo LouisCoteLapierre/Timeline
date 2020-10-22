@@ -46,7 +46,6 @@ namespace TimelineDataExporter
         {
             VerifyDataFolderIntegrity();
 
-            
             var txtFilePaths = Directory.EnumerateFiles(directoryPath, ".txt");
             foreach (var txtFilePath in txtFilePaths)
             {
@@ -55,7 +54,7 @@ namespace TimelineDataExporter
                 {
                     if (String.Compare(noExtensionFileName, categoryName) == 0)
                     {
-                        JsonConvert.SerializeObject(DataModel.Instance.HistoricPeriods)
+                        //JsonConvert.SerializeObject(DataModel.Instance.HistoricPeriods)
                     }
                 }
             }

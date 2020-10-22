@@ -58,7 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data\DataEntry.cs" />
+    <Compile Include="Data\TimelineEvent.cs" />
     <Compile Include="Data\DataEntryContainer.cs" />
     <Compile Include="Enums\TimelineHistoricPeriod.cs" />
     <Compile Include="Models\DataModel.cs" />

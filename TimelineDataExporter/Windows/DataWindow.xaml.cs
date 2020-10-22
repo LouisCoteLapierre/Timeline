@@ -24,7 +24,7 @@ namespace TimelineDataExporter.Windows
 
             // Build rows from property names of the DataEntry, this ensures that any potential renames 
             // in code will be reflected in the data, no need to fumble with the wpf
-            foreach (var propertyInfo in typeof(DataEntry).GetProperties())
+            foreach (var propertyInfo in typeof(TimelineEvent).GetProperties())
             {
                 var column = new DataGridTextColumn();
 
@@ -41,7 +41,7 @@ namespace TimelineDataExporter.Windows
         // WPF Callbacks
         private void OnCreateDataEntry(object sender, RoutedEventArgs e)
         {
-            var newData = new DataEntry()
+            var newData = new TimelineEvent()
             {
                 Title = TitleTextBox.Text,
                 Description = DescriptionTextBox.Text,
