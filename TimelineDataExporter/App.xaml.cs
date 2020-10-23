@@ -34,10 +34,10 @@ namespace TimelineDataExporter
                 // Trim the files extension
                 var noExtensionFileName = txtFilePath.Replace(".txt", "");
                 // Read them and populate our DataContainers
-                using (var dataEntryContainerFile = new StreamReader(txtFilePath))
+                using (var reader = new StreamReader(txtFilePath))
                 {
                     DataModel.Instance.HistoricPeriods.Add((TimelineHistoricPeriod)Enum.Parse(typeof(TimelineHistoricPeriod), noExtensionFileName),
-                                                          JsonConvert.DeserializeObject<DataEntryContainer>(dataEntryContainerFile.ReadToEnd()));
+                                                          JsonConvert.DeserializeObject<List<TimelineEvent>>(reader.ReadToEnd()));
                 }
             }
         }
@@ -54,7 +54,8 @@ namespace TimelineDataExporter
                 {
                     if (String.Compare(noExtensionFileName, categoryName) == 0)
                     {
-                        //JsonConvert.SerializeObject(DataModel.Instance.HistoricPeriods)
+                        var serializedTimelineEvents = DataModel.Instance.HistoricPeriods[(TimelineHistoricPeriod)Enum.Parse(typeof(TimelineHistoricPeriod), noExtensionFileName)];
+                        File.WriteAllText(txtFilePath, JsonConvert.SerializeObject(serializedTimelineEvents));  
                     }
                 }
             }

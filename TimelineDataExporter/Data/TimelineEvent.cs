@@ -1,5 +1,6 @@
 ﻿using System;
 
+using TimelineDataExporter.Enums;
 using TimelineDataExporter.Serialization;
 
 namespace TimelineDataExporter.Data
@@ -10,5 +11,6 @@ namespace TimelineDataExporter.Data
         public string Description { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
+        public TimelineHistoricPeriod HistoricPeriod { get; set; }
     }
 }

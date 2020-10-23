@@ -16,7 +16,7 @@ namespace TimelineDataExporter.Models
             }
         }
 
-        public Dictionary<TimelineHistoricPeriod, DataEntryContainer> HistoricPeriods { get; set; } = new Dictionary<TimelineHistoricPeriod, DataEntryContainer>();
+        public Dictionary<TimelineHistoricPeriod, List<TimelineEvent>> HistoricPeriods { get; set; } = new Dictionary<TimelineHistoricPeriod, List<TimelineEvent>>();
 
         private DataModel() { }
         static DataModel() { }
