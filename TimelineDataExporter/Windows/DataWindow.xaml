@@ -12,10 +12,11 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -26,25 +27,28 @@
 
         <!-- DATA CREATION Column 1 & 2-->
         <!-- Title -->
-        <Label Content="Title" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
-        <TextBox Name="TitleTextBox" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Center" Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120" Grid.Row="0" Grid.Column="1"/>
+        <Label Content="Title (Unique)" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBox Name="TitleTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120" Grid.Row="0" Grid.Column="1"/>
 
         <!-- Description -->
         <Label Content="Description" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
-        <TextBox Name="DescriptionTextBox" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Center" Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="1"/>
+        <TextBox Name="DescriptionTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="1"/>
 
         <!-- Start date-->
         <Label Content="Start Date" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
-        <DatePicker Name ="StartDatePicker" Grid.Row="2" Grid.Column="1"/>
+        <DatePicker Name ="StartDatePicker" Margin="5,5,5,5" Grid.Row="2" Grid.Column="1" Width="150" HorizontalAlignment="Left"/>
 
         <!-- End date-->
         <Label Content="End Date" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
-        <DatePicker Name="EndDatePicker" Grid.Row="3" Grid.Column="1"/>
+        <DatePicker Name="EndDatePicker" Margin="5,5,5,5" Grid.Row="3" Grid.Column="1" Width="150" HorizontalAlignment="Left"/>
+
+        <Label Content="Historic Period" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
+        <ComboBox Name="HistoricPeriodComboBox" Grid.Row="4" Margin="5,5,5,5" Grid.Column="1" HorizontalAlignment="Left"/>
 
         <!-- Create data -->
-        <Button Grid.Row="4" Grid.ColumnSpan="2" Height="30" Content="Create" Margin="10,5,10,5" Click="OnCreateDataEntry"/>
+        <Button Grid.Row="5" Margin="5,5,5,5" Grid.ColumnSpan="2" Height="30" Content="Create" Click="OnCreateDataEntry"/>
 
         <!-- DATA VISUALISATION Column 3 -->
-        <DataGrid Name="DataGrid" Grid.Column="2" HorizontalAlignment="Left" Grid.RowSpan="5"  VerticalAlignment="Top" Width="Auto" Height="Auto"/>
+        <DataGrid Name="DataGrid" Margin="5,5,5,5" Grid.Column="2" HorizontalAlignment="Left" Grid.RowSpan="5"  VerticalAlignment="Top" Width="Auto" Height="Auto"/>
     </Grid>
 </Window>

@@ -28,28 +28,31 @@ namespace TimelineDataExporter
             VerifyDataFolderIntegrity();
 
             // Get all files in that directory
-            var txtFilePaths = Directory.EnumerateFiles(directoryPath, ".txt");
-            foreach (var txtFilePath in txtFilePaths)
+            foreach (var txtFilePath in Directory.EnumerateFiles(directoryPath))
             {
                 // Trim the files extension
                 var noExtensionFileName = txtFilePath.Replace(".txt", "");
+                noExtensionFileName = noExtensionFileName.Substring(noExtensionFileName.LastIndexOf("/") + 1);
                 // Read them and populate our DataContainers
                 using (var reader = new StreamReader(txtFilePath))
                 {
                     DataModel.Instance.HistoricPeriods.Add((TimelineHistoricPeriod)Enum.Parse(typeof(TimelineHistoricPeriod), noExtensionFileName),
-                                                          JsonConvert.DeserializeObject<List<TimelineEvent>>(reader.ReadToEnd()));
+                                                          JsonConvert.DeserializeObject<Dictionary<ulong, TimelineEvent>>(reader.ReadToEnd()));
                 }
             }
+
+            // Initialize the data model if it's not fine
+            DataModel.Instance.Initialize();
         }
 
         private void OnAppExit(object sender, ExitEventArgs e)
         {
             VerifyDataFolderIntegrity();
 
-            var txtFilePaths = Directory.EnumerateFiles(directoryPath, ".txt");
-            foreach (var txtFilePath in txtFilePaths)
+            foreach (var txtFilePath in Directory.EnumerateFiles(directoryPath))
             {
                 var noExtensionFileName = txtFilePath.Replace(".txt", "");
+                noExtensionFileName = noExtensionFileName.Substring(noExtensionFileName.LastIndexOf("/") + 1);
                 foreach (var categoryName in Enum.GetNames(typeof(TimelineHistoricPeriod)))
                 {
                     if (String.Compare(noExtensionFileName, categoryName) == 0)
@@ -57,7 +60,7 @@ namespace TimelineDataExporter
                         var serializedTimelineEvents = DataModel.Instance.HistoricPeriods[(TimelineHistoricPeriod)Enum.Parse(typeof(TimelineHistoricPeriod), noExtensionFileName)];
                         File.WriteAllText(txtFilePath, JsonConvert.SerializeObject(serializedTimelineEvents));  
                     }
-                }
+                  }
             }
         }
 
@@ -81,6 +84,6 @@ namespace TimelineDataExporter
                 }
             }
         }
-        private string directoryPath = "../../Resources";
+        private string directoryPath = "../../Resources/";
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using TimelineDataExporter.Data;
 using TimelineDataExporter.Enums;
@@ -16,12 +17,31 @@ namespace TimelineDataExporter.Models
             }
         }
 
-        public Dictionary<TimelineHistoricPeriod, List<TimelineEvent>> HistoricPeriods { get; set; } = new Dictionary<TimelineHistoricPeriod, List<TimelineEvent>>();
+        public Dictionary<TimelineHistoricPeriod, Dictionary<ulong, TimelineEvent>> HistoricPeriods { get; set; } = new Dictionary<TimelineHistoricPeriod, Dictionary<ulong, TimelineEvent>>();
 
         private DataModel() { }
         static DataModel() { }
 
+        public void Initialize()
+        {
+            foreach (var value in Enum.GetValues(typeof(TimelineHistoricPeriod)))
+            {
+                var enumValue = (TimelineHistoricPeriod)value;
+                if (HistoricPeriods.ContainsKey(enumValue))
+                {
+                    if (HistoricPeriods[enumValue] == null)
+                    {
+                        HistoricPeriods[enumValue] = new Dictionary<ulong, TimelineEvent>();
+                    }
+
+                }
+                else 
+                {
+                    HistoricPeriods.Add(enumValue, new Dictionary<ulong, TimelineEvent>());
+                }
+            }
+        }
+
         private static readonly DataModel instance = new DataModel();
-        
     }
 }
