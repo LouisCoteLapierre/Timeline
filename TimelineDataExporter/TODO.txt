@@ -1,0 +1,12 @@
+- Add a LastModified entry that is not modifiable from the UI but is modified everytime a TimelineEvent
+is created or updated.
+-Figure out a way to only show a specific amount of items in the DataGrid without everything being added
+in the Items list, if we don't do that, the Items list will become WAY too big and will cause
+major slowdowns of the program.
+- Add a RelatedLinks entry which will be a collection of links to other TimelineEvents
+-Changed GeographicOrigin to Geography (Lieu)
+
+-Links will be between [] so when the TimelineApp needs to write a text, it will check if there's
+any [] in the text and if so will replace the text between the [] with a link to the specified
+TimelineEvent's page. The text between the [] will be used to calculate the hash the same way
+it is calculated when the TimelineEvent is created.
