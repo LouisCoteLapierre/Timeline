@@ -2,6 +2,7 @@
 {
     public enum TimelineHistoricPeriod
     {
+        None,
         Prehistoric,
         Antiquity,
         MiddleAges,

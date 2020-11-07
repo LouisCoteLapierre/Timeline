@@ -14,8 +14,20 @@ namespace TimelineDataExporter.Windows
 
         private void OnViewDataButtonClicked(object sender, RoutedEventArgs e)
         {
-            var dataWindow = new DataWindow();
-            dataWindow.Show();
+            DataWindow = new DataWindow();
+            DataWindow.Show();
+            DataWindow.Focus();
+            DataWindow.Closed += OnDataWindowClosed;
+
+            Hide();
         }
+
+        private void OnDataWindowClosed(object sender, System.EventArgs e)
+        {
+            Show();
+            Focus();
+        }
+
+        DataWindow DataWindow;
     }
 }

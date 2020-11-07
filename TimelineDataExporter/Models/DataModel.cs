@@ -17,7 +17,7 @@ namespace TimelineDataExporter.Models
             }
         }
 
-        public Dictionary<TimelineHistoricPeriod, Dictionary<ulong, TimelineEvent>> HistoricPeriods { get; set; } = new Dictionary<TimelineHistoricPeriod, Dictionary<ulong, TimelineEvent>>();
+        public Dictionary<TimelineHistoricPeriod, Dictionary<string, TimelineEvent>> HistoricPeriods { get; set; } = new Dictionary<TimelineHistoricPeriod, Dictionary<string, TimelineEvent>>();
 
         private DataModel() { }
         static DataModel() { }
@@ -31,13 +31,13 @@ namespace TimelineDataExporter.Models
                 {
                     if (HistoricPeriods[enumValue] == null)
                     {
-                        HistoricPeriods[enumValue] = new Dictionary<ulong, TimelineEvent>();
+                        HistoricPeriods[enumValue] = new Dictionary<string, TimelineEvent>();
                     }
 
                 }
                 else 
                 {
-                    HistoricPeriods.Add(enumValue, new Dictionary<ulong, TimelineEvent>());
+                    HistoricPeriods.Add(enumValue, new Dictionary<string, TimelineEvent>());
                 }
             }
         }

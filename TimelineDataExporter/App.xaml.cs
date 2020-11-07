@@ -37,7 +37,7 @@ namespace TimelineDataExporter
                 using (var reader = new StreamReader(txtFilePath))
                 {
                     DataModel.Instance.HistoricPeriods.Add((TimelineHistoricPeriod)Enum.Parse(typeof(TimelineHistoricPeriod), noExtensionFileName),
-                                                          JsonConvert.DeserializeObject<Dictionary<ulong, TimelineEvent>>(reader.ReadToEnd()));
+                                                          JsonConvert.DeserializeObject<Dictionary<string, TimelineEvent>>(reader.ReadToEnd()));
                 }
             }
 

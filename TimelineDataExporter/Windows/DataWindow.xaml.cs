@@ -56,6 +56,16 @@ namespace TimelineDataExporter.Windows
                     DataGrid.Items.Add(timelineEvent.Value);
                 }
             }
+
+            // Add rows from the DataModel
+            foreach (var categoryEventContainer in DataModel.Instance.HistoricPeriods)
+            {
+                foreach (var timelineEvent in categoryEventContainer.Value.Values)
+                {
+                    DataGrid.Items.Add(timelineEvent);
+                }
+            }
+
         }
 
         private void OnCreateAndUpdateTimelineEvent(object sender, RoutedEventArgs e)
@@ -68,35 +78,30 @@ namespace TimelineDataExporter.Windows
             var hashed = md5Hasher.ComputeHash(Encoding.UTF8.GetBytes(title));
             var ulongHash = BitConverter.ToUInt64(hashed, 0);
 
-            // Create a list of tags from the tags text box
             var tags = new List<string>();
-            foreach (var tag in TagsTextBox.Text.Split(',', ' '))
-            {
-                if (tag.Length == 0)
-                {
-                    continue;
-                }
+            ParseText(TagsTextBox.Text, ref tags, ',', ' ');
 
-                tags.Add(tag);
-            }
+            var links = new List<string>();
+            ParseText(RelatedLinksTextBox.Text, ref links, ',');
 
             var newData = new TimelineEvent()
             {
                 Title = title,
                 Description = DescriptionTextBox.Text,
-                GeographicOrigin = GeographicOriginTextBox.Text,
+                Geography = GeographyTextBox.Text,
                 StartDate = StartDatePicker.SelectedDate,
                 EndDate = EndDatePicker.SelectedDate,
                 HistoricPeriod = historicPeriod,
                 Type = TypeTextBox.Text,
                 WikipediaLink = WikiLinkTextBox.Text,
-                Tags = tags
+                Tags = tags,
+                RelatedLinks = links
             };
 
             // Check if there is already an entry for that title, if not, create it
-            if (!DataModel.Instance.HistoricPeriods[historicPeriod].ContainsKey(ulongHash))
+            if (!DataModel.Instance.HistoricPeriods[historicPeriod].ContainsKey(Title))
             {
-                DataModel.Instance.HistoricPeriods[historicPeriod].Add(ulongHash, null);
+                DataModel.Instance.HistoricPeriods[historicPeriod].Add(Title, null);
             }
             else
             {
@@ -119,7 +124,7 @@ namespace TimelineDataExporter.Windows
             DataGrid.Items.Add(newData);
 
             // Update the DataModel with the new timeline event
-            DataModel.Instance.HistoricPeriods[historicPeriod][ulongHash] = newData;
+            DataModel.Instance.HistoricPeriods[historicPeriod][Title] = newData;
         }
 
         private void OnDataGridCellChanged(object sender, EventArgs e)
@@ -138,7 +143,7 @@ namespace TimelineDataExporter.Windows
                 // Feed the UI from the timeline event data
                 TitleTextBox.Text = currentlySelectedTimelineEvent.Title;
                 DescriptionTextBox.Text = currentlySelectedTimelineEvent.Description;
-                GeographicOriginTextBox.Text = currentlySelectedTimelineEvent.GeographicOrigin;
+                GeographyTextBox.Text = currentlySelectedTimelineEvent.Geography;
                 StartDatePicker.SelectedDate = currentlySelectedTimelineEvent.StartDate;
                 EndDatePicker.SelectedDate = currentlySelectedTimelineEvent.EndDate;
                 HistoricPeriodComboBox.SelectedIndex = (int)currentlySelectedTimelineEvent.HistoricPeriod;
@@ -146,18 +151,38 @@ namespace TimelineDataExporter.Windows
                 WikiLinkTextBox.Text = currentlySelectedTimelineEvent.WikipediaLink;
 
                 // Build a tag text from the tags of the event
-                var stringBuilder = new StringBuilder();
-                foreach (var tag in currentlySelectedTimelineEvent.Tags)
-                {
-                    if (stringBuilder.Length != 0)
-                    {
-                        stringBuilder.Append(", ");
-                    }
-
-                    stringBuilder.Append(tag);
-                }
-                TagsTextBox.Text = stringBuilder.ToString();
+                TagsTextBox.Text = BuildTextFromList(currentlySelectedTimelineEvent.Tags, ", ").ToString();
+                RelatedLinksTextBox.Text = BuildTextFromList(currentlySelectedTimelineEvent.RelatedLinks, ", ").ToString();
             }
+        }
+
+        // Helper methods
+        private void ParseText(string text, ref List<string> separatedTexts, params char[] separators)
+        {
+            foreach (var splitText in text.Split(separators))
+            {
+                if (splitText.Length == 0)
+                {
+                    continue;
+                }
+
+                separatedTexts.Add(splitText);
+            }
+        }
+
+        private StringBuilder BuildTextFromList(List<string> texts, string separator)
+        {
+            var stringBuilder = new StringBuilder();
+            foreach (var text in texts)
+            {
+                if (stringBuilder.Length != 0)
+                {
+                    stringBuilder.Append(separator);
+                }
+
+                stringBuilder.Append(text);
+            }
+            return stringBuilder;
         }
     }
 }

@@ -26,6 +26,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Height="1"/>
 
@@ -39,8 +40,8 @@
         <TextBox Name="DescriptionTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" Grid.Row="1" Grid.Column="1"/>
 
         <!-- Geographic origin -->
-        <Label Content="Geographic origin" ToolTip="Country, city, continent, etc." HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
-        <TextBox Name="GeographicOriginTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" Grid.Row="2" Grid.Column="1"/>
+        <Label Content="Geography" ToolTip="Country, city, continent, etc." HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBox Name="GeographyTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" Grid.Row="2" Grid.Column="1"/>
         
         <!-- Start date-->
         <Label Content="Start Date" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
@@ -66,8 +67,12 @@
         <Label Content="Tags" ToolTip="Will create tags from all words that are separated by a comma (,) or a space ( )" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="8" Grid.Column="0" VerticalAlignment="Center"/>
         <TextBox Name="TagsTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" Grid.Row="8" Grid.Column="1"/>
 
+        <!-- Related Links -->
+        <Label Content="Related Links" ToolTip="Will create related links from Titles separated by commas (,), must be the exact Title of the corresponding link" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="9" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBox Name="RelatedLinksTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" Grid.Row="9" Grid.Column="1"/>
+
         <!-- Create data -->
-        <Button Grid.Row="9" Margin="5,5,5,5" Grid.ColumnSpan="2" Height="30" Content="Create/Update" Click="OnCreateAndUpdateTimelineEvent"/>
+        <Button Grid.Row="10" Margin="5,5,5,5" Grid.ColumnSpan="2" Height="30" Content="Create/Update" Click="OnCreateAndUpdateTimelineEvent"/>
 
         <!-- DATA VISUALISATION Column 3 -->
         <DataGrid Name="DataGrid" Margin="5,5,5,5" CanUserResizeRows="False" CanUserAddRows="False" SelectionMode="Single" CanUserDeleteRows="False" IsReadOnly="true" CurrentCellChanged="OnDataGridCellChanged" Initialized="OnDataGridInitialized"  Grid.Column="2" HorizontalAlignment="Left" Grid.RowSpan="5"  VerticalAlignment="Top" Width="Auto" Height="Auto"/>
