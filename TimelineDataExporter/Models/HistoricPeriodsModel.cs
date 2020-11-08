@@ -6,10 +6,10 @@ using TimelineDataExporter.Enums;
 
 namespace TimelineDataExporter.Models
 {
-    public class DataModel
+    public class HistoricPeriodsModel
     {
-        // Singleton pour l'instant? ça va faire la job, le scope de cette app est petit
-        public static DataModel Instance
+        // Singleton for now, the scope of this app is fairly small so this will do the trick
+        public static HistoricPeriodsModel Instance
         {
             get
             {
@@ -19,8 +19,8 @@ namespace TimelineDataExporter.Models
 
         public Dictionary<TimelineHistoricPeriod, Dictionary<string, TimelineEvent>> HistoricPeriods { get; set; } = new Dictionary<TimelineHistoricPeriod, Dictionary<string, TimelineEvent>>();
 
-        private DataModel() { }
-        static DataModel() { }
+        private HistoricPeriodsModel() { }
+        static HistoricPeriodsModel() { }
 
         public void Initialize()
         {
@@ -94,6 +94,6 @@ namespace TimelineDataExporter.Models
             return false;
         }
 
-        private static readonly DataModel instance = new DataModel();
+        private static readonly HistoricPeriodsModel instance = new HistoricPeriodsModel();
     }
 }

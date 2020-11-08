@@ -36,13 +36,13 @@ namespace TimelineDataExporter
                 // Read them and populate our DataContainers
                 using (var reader = new StreamReader(txtFilePath))
                 {
-                    DataModel.Instance.HistoricPeriods.Add((TimelineHistoricPeriod)Enum.Parse(typeof(TimelineHistoricPeriod), noExtensionFileName),
+                    HistoricPeriodsModel.Instance.HistoricPeriods.Add((TimelineHistoricPeriod)Enum.Parse(typeof(TimelineHistoricPeriod), noExtensionFileName),
                                                           JsonConvert.DeserializeObject<Dictionary<string, TimelineEvent>>(reader.ReadToEnd()));
                 }
             }
 
             // Initialize the data model if it's not fine
-            DataModel.Instance.Initialize();
+            HistoricPeriodsModel.Instance.Initialize();
         }
 
         private void OnAppExit(object sender, ExitEventArgs e)
@@ -57,7 +57,7 @@ namespace TimelineDataExporter
                 {
                     if (String.Compare(noExtensionFileName, categoryName) == 0)
                     {
-                        var serializedTimelineEvents = DataModel.Instance.HistoricPeriods[(TimelineHistoricPeriod)Enum.Parse(typeof(TimelineHistoricPeriod), noExtensionFileName)];
+                        var serializedTimelineEvents = HistoricPeriodsModel.Instance.HistoricPeriods[(TimelineHistoricPeriod)Enum.Parse(typeof(TimelineHistoricPeriod), noExtensionFileName)];
                         File.WriteAllText(txtFilePath, JsonConvert.SerializeObject(serializedTimelineEvents));  
                     }
                   }

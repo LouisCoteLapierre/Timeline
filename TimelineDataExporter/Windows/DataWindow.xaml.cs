@@ -53,7 +53,7 @@ namespace TimelineDataExporter.Windows
             }
 
             // Add rows from the DataModel
-            foreach (var historicPeriodEventsDictionary in DataModel.Instance.HistoricPeriods)
+            foreach (var historicPeriodEventsDictionary in HistoricPeriodsModel.Instance.HistoricPeriods)
             {
                 foreach (var timelineEvent in historicPeriodEventsDictionary.Value)
                 {
@@ -89,7 +89,7 @@ namespace TimelineDataExporter.Windows
             };
 
             // Update the model
-            bool eventExists = !DataModel.Instance.AddEntry(newTimelineEvent);
+            bool eventExists = !HistoricPeriodsModel.Instance.AddEntry(newTimelineEvent);
             // If we get true to return, it means a new entry was created, to know if the entry exists
             // already, we invert that bool
             if (eventExists)
@@ -138,7 +138,7 @@ namespace TimelineDataExporter.Windows
                 return;
             }
 
-            DataModel.Instance.RemoveEntry(TitleTextBox.Text);
+            HistoricPeriodsModel.Instance.RemoveEntry(TitleTextBox.Text);
             RemoveEventFromDataGrid(TitleTextBox.Text);
         }
 

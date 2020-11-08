@@ -60,7 +60,7 @@
     </ApplicationDefinition>
     <Compile Include="Data\TimelineEvent.cs" />
     <Compile Include="Enums\TimelineHistoricPeriod.cs" />
-    <Compile Include="Models\DataModel.cs" />
+    <Compile Include="Models\HistoricPeriodsModel.cs" />
     <Compile Include="Serialization\IJsonSerializable.cs" />
     <Compile Include="Windows\DataWindow.xaml.cs">
       <DependentUpon>DataWindow.xaml</DependentUpon>
