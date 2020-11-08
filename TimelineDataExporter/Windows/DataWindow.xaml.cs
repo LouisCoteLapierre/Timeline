@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 
 using TimelineDataExporter.Data;
 using TimelineDataExporter.Enums;
@@ -30,6 +30,10 @@ namespace TimelineDataExporter.Windows
             {
                 HistoricPeriodComboBox.Items.Add(categoryName);
             }
+
+            // By default, all new timeline events will go into None.txt unless the user specified a different
+            // historic period
+            HistoricPeriodComboBox.SelectedIndex = 0;
         }
 
         private void OnDataGridInitialized(object sender, EventArgs e)
@@ -56,16 +60,6 @@ namespace TimelineDataExporter.Windows
                     DataGrid.Items.Add(timelineEvent.Value);
                 }
             }
-
-            // Add rows from the DataModel
-            foreach (var categoryEventContainer in DataModel.Instance.HistoricPeriods)
-            {
-                foreach (var timelineEvent in categoryEventContainer.Value.Values)
-                {
-                    DataGrid.Items.Add(timelineEvent);
-                }
-            }
-
         }
 
         private void OnCreateAndUpdateTimelineEvent(object sender, RoutedEventArgs e)
@@ -74,17 +68,13 @@ namespace TimelineDataExporter.Windows
 
             var title = TitleTextBox.Text;
 
-            MD5 md5Hasher = MD5.Create();
-            var hashed = md5Hasher.ComputeHash(Encoding.UTF8.GetBytes(title));
-            var ulongHash = BitConverter.ToUInt64(hashed, 0);
-
             var tags = new List<string>();
             ParseText(TagsTextBox.Text, ref tags, ',', ' ');
 
             var links = new List<string>();
             ParseText(RelatedLinksTextBox.Text, ref links, ',');
 
-            var newData = new TimelineEvent()
+            var newTimelineEvent = new TimelineEvent()
             {
                 Title = title,
                 Description = DescriptionTextBox.Text,
@@ -98,33 +88,16 @@ namespace TimelineDataExporter.Windows
                 RelatedLinks = links
             };
 
-            // Check if there is already an entry for that title, if not, create it
-            if (!DataModel.Instance.HistoricPeriods[historicPeriod].ContainsKey(Title))
+            // Update the model
+            bool eventExists = !DataModel.Instance.AddEntry(newTimelineEvent);
+            // If we get true to return, it means a new entry was created, to know if the entry exists
+            // already, we invert that bool
+            if (eventExists)
             {
-                DataModel.Instance.HistoricPeriods[historicPeriod].Add(Title, null);
-            }
-            else
-            {
-                // Todo : make this better, probably with a DataGrid that's not linked to all of the data
-                // but is only a view of what we currently see
-                int i = 0;
-                foreach (var item in DataGrid.Items)
-                {
-                    var timelineEvent = (TimelineEvent)item;
-                    if (timelineEvent != null && timelineEvent.Title == newData.Title)
-                    {
-                        DataGrid.Items.RemoveAt(i);
-                        break;
-                    }
-
-                    i++;
-                }
+                RemoveEventFromDataGrid(title);
             }
 
-            DataGrid.Items.Add(newData);
-
-            // Update the DataModel with the new timeline event
-            DataModel.Instance.HistoricPeriods[historicPeriod][Title] = newData;
+            DataGrid.Items.Add(newTimelineEvent);
         }
 
         private void OnDataGridCellChanged(object sender, EventArgs e)
@@ -156,6 +129,19 @@ namespace TimelineDataExporter.Windows
             }
         }
 
+        private void OnDataGridKeyDown(object sender, KeyEventArgs args)
+        {
+            // Check if the key press was delete or backspace, if so, delete the selected entry (check the title)
+            // If not those keys, don't do anything
+            if (args.Key != Key.Back && args.Key != Key.Delete)
+            {
+                return;
+            }
+
+            DataModel.Instance.RemoveEntry(TitleTextBox.Text);
+            RemoveEventFromDataGrid(TitleTextBox.Text);
+        }
+
         // Helper methods
         private void ParseText(string text, ref List<string> separatedTexts, params char[] separators)
         {
@@ -183,6 +169,24 @@ namespace TimelineDataExporter.Windows
                 stringBuilder.Append(text);
             }
             return stringBuilder;
+        }
+
+        private void RemoveEventFromDataGrid(string title)
+        {
+            // Todo : make this better, probably with a DataGrid that's not linked to all of the data
+            // but is only a view of what we currently see
+            int i = 0;
+            foreach (var item in DataGrid.Items)
+            {
+                var timelineEvent = (TimelineEvent)item;
+                if (timelineEvent != null && timelineEvent.Title == title)
+                {
+                    DataGrid.Items.RemoveAt(i);
+                    break;
+                }
+
+                i++;
+            }
         }
     }
 }

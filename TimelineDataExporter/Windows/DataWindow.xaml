@@ -75,6 +75,6 @@
         <Button Grid.Row="10" Margin="5,5,5,5" Grid.ColumnSpan="2" Height="30" Content="Create/Update" Click="OnCreateAndUpdateTimelineEvent"/>
 
         <!-- DATA VISUALISATION Column 3 -->
-        <DataGrid Name="DataGrid" Margin="5,5,5,5" CanUserResizeRows="False" CanUserAddRows="False" SelectionMode="Single" CanUserDeleteRows="False" IsReadOnly="true" CurrentCellChanged="OnDataGridCellChanged" Initialized="OnDataGridInitialized"  Grid.Column="2" HorizontalAlignment="Left" Grid.RowSpan="5"  VerticalAlignment="Top" Width="Auto" Height="Auto"/>
+        <DataGrid Name="DataGrid" Margin="5,5,5,5" CanUserResizeRows="False" KeyDown="OnDataGridKeyDown" CanUserAddRows="False" SelectionMode="Single" CanUserDeleteRows="False" IsReadOnly="true" CurrentCellChanged="OnDataGridCellChanged" Initialized="OnDataGridInitialized"  Grid.Column="2" HorizontalAlignment="Left" Grid.RowSpan="5"  VerticalAlignment="Top" Width="Auto" Height="Auto"/>
     </Grid>
 </Window>
