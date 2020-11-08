@@ -37,12 +37,12 @@ namespace TimelineDataExporter
                 using (var reader = new StreamReader(txtFilePath))
                 {
                     HistoricPeriodsModel.Instance.HistoricPeriods.Add((TimelineHistoricPeriod)Enum.Parse(typeof(TimelineHistoricPeriod), noExtensionFileName),
-                                                          JsonConvert.DeserializeObject<Dictionary<string, TimelineEvent>>(reader.ReadToEnd()));
+                                                          JsonConvert.DeserializeObject<HistoricPeriod>(reader.ReadToEnd()));
                 }
             }
 
             // Initialize the data model if it's not fine
-            HistoricPeriodsModel.Instance.Initialize();
+            HistoricPeriodsModel.Instance.VerifyIntegrity();
         }
 
         private void OnAppExit(object sender, ExitEventArgs e)
