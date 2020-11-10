@@ -22,5 +22,7 @@ namespace TimelineDataExporter.Data
 
         public List<string> Tags { get; set; } = new List<string>();
         public List<string> RelatedLinks { get; set; } = new List<string>();
+
+        public DateTime? LastModified { get; set; }
     }
 }

@@ -74,6 +74,9 @@ namespace TimelineDataExporter.Windows
             var links = new List<string>();
             ParseText(RelatedLinksTextBox.Text, ref links, ',');
 
+            var now = DateTime.Now;
+            LastModifiedLabel.Content = now.ToString();
+
             var newTimelineEvent = new TimelineEvent()
             {
                 Title = title,
@@ -85,7 +88,8 @@ namespace TimelineDataExporter.Windows
                 Type = TypeTextBox.Text,
                 WikipediaLink = WikiLinkTextBox.Text,
                 Tags = tags,
-                RelatedLinks = links
+                RelatedLinks = links,
+                LastModified = now
             };
 
             // Update the model
@@ -94,6 +98,7 @@ namespace TimelineDataExporter.Windows
             // already, we invert that bool
             if (eventExists)
             {
+
                 RemoveEventFromDataGrid(title);
             }
 
@@ -122,6 +127,7 @@ namespace TimelineDataExporter.Windows
                 HistoricPeriodComboBox.SelectedIndex = (int)currentlySelectedTimelineEvent.HistoricPeriod;
                 TypeTextBox.Text = currentlySelectedTimelineEvent.Type;
                 WikiLinkTextBox.Text = currentlySelectedTimelineEvent.WikipediaLink;
+                LastModifiedLabel.Content = currentlySelectedTimelineEvent.LastModified.ToString();
 
                 // Build a tag text from the tags of the event
                 TagsTextBox.Text = BuildTextFromList(currentlySelectedTimelineEvent.Tags, ", ").ToString();

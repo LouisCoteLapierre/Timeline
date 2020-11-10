@@ -1,5 +1,3 @@
-- Add a LastModified entry that is not modifiable from the UI but is modified everytime a TimelineEvent
-is created or updated.
 -Figure out a way to only show a specific amount of items in the DataGrid without everything being added
 in the Items list, if we don't do that, the Items list will become WAY too big and will cause
 major slowdowns of the program.	
