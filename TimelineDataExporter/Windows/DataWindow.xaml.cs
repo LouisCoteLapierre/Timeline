@@ -38,11 +38,17 @@ namespace TimelineDataExporter.Windows
 
                 var column = new DataGridTextColumn();
                 column.Header = propertyName;
-
+                
                 var binding = new Binding(propertyName);
                 if (String.Compare(propertyName, "LastModified") == 0)
                 {
                     binding.StringFormat = "yyyy/MM/dd";
+                }
+                else if (   String.Compare(propertyName, "Description") == 0
+                         || String.Compare(propertyName, "Works") == 0
+                         || String.Compare(propertyName, "WikiLink") == 0)
+                {
+                    column.MaxWidth = 150;
                 }
                 
                 column.Binding = binding;
@@ -66,6 +72,9 @@ namespace TimelineDataExporter.Windows
 
             var title = TitleTextBox.Text;
 
+            var works = new List<string>();
+            ParseText(WorksTextBox.Text, ref works, ',');
+
             var links = new List<string>();
             ParseText(RelatedLinksTextBox.Text, ref links, ',');
 
@@ -81,7 +90,8 @@ namespace TimelineDataExporter.Windows
                 EndDate = EndDateTextBox.Text,
                 Period = historicPeriod,
                 Type = TypeTextBox.Text,
-                WikipediaLink = WikiLinkTextBox.Text,
+                WikiLink = WikiLinkTextBox.Text,
+                Works = works,
                 RelatedLinks = links,
                 LastModified = now
             };
@@ -119,10 +129,11 @@ namespace TimelineDataExporter.Windows
                 EndDateTextBox.Text = currentlySelectedTimelineEvent.EndDate;
                 HistoricPeriodComboBox.SelectedIndex = (int)currentlySelectedTimelineEvent.Period;
                 TypeTextBox.Text = currentlySelectedTimelineEvent.Type;
-                WikiLinkTextBox.Text = currentlySelectedTimelineEvent.WikipediaLink;
+                WikiLinkTextBox.Text = currentlySelectedTimelineEvent.WikiLink;
                 LastModifiedLabel.Content = currentlySelectedTimelineEvent.LastModified.ToString();
 
                 // Build a tag text from the tags of the event
+                WorksTextBox.Text = BuildTextFromList(currentlySelectedTimelineEvent.Works, ", ").ToString();
                 RelatedLinksTextBox.Text = BuildTextFromList(currentlySelectedTimelineEvent.RelatedLinks, ", ").ToString();
             }
         }

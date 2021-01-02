@@ -7,6 +7,8 @@ any [] in the text and if so will replace the text between the [] with a link to
 TimelineEvent's page. The text between the [] will be used to calculate the hash the same way
 it is calculated when the TimelineEvent is created.
 
+-Display content of the List<string> instead of (Collection)
+
 In the section Description: add the possibility of 'Enter'
 Add Image section
 Add Oeuvre section
