@@ -34,10 +34,9 @@ namespace TimelineDataExporter.Windows
             // in code will be reflected in the data, no need to fumble with the wpf
             foreach (var propertyInfo in typeof(TimelineEvent).GetProperties())
             {
-                var column = new DataGridTextColumn();
-
                 var propertyName = propertyInfo.Name;
 
+                var column = new DataGridTextColumn();
                 column.Header = propertyName;
 
                 var binding = new Binding(propertyName);
@@ -82,7 +81,7 @@ namespace TimelineDataExporter.Windows
                 Geography = GeographyTextBox.Text,
                 StartDate = StartDatePicker.SelectedDate,
                 EndDate = EndDatePicker.SelectedDate,
-                HistoricPeriod = historicPeriod,
+                Period = historicPeriod,
                 Type = TypeTextBox.Text,
                 WikipediaLink = WikiLinkTextBox.Text,
                 RelatedLinks = links,
@@ -120,7 +119,7 @@ namespace TimelineDataExporter.Windows
                 GeographyTextBox.Text = currentlySelectedTimelineEvent.Geography;
                 StartDatePicker.SelectedDate = currentlySelectedTimelineEvent.StartDate;
                 EndDatePicker.SelectedDate = currentlySelectedTimelineEvent.EndDate;
-                HistoricPeriodComboBox.SelectedIndex = (int)currentlySelectedTimelineEvent.HistoricPeriod;
+                HistoricPeriodComboBox.SelectedIndex = (int)currentlySelectedTimelineEvent.Period;
                 TypeTextBox.Text = currentlySelectedTimelineEvent.Type;
                 WikiLinkTextBox.Text = currentlySelectedTimelineEvent.WikipediaLink;
                 LastModifiedLabel.Content = currentlySelectedTimelineEvent.LastModified.ToString();

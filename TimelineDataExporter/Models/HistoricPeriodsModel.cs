@@ -51,7 +51,7 @@ namespace TimelineDataExporter.Models
                 {
                     var existingEvent = historicPeriodPair.Value.Get(newEvent.Title);
                     // If there is and the current category is different, delete the other entry
-                    if (existingEvent.HistoricPeriod != newEvent.HistoricPeriod)
+                    if (existingEvent.Period != newEvent.Period)
                     {
                         historicPeriodPair.Value.Remove(newEvent.Title);
                     }
@@ -60,7 +60,7 @@ namespace TimelineDataExporter.Models
                 }
             }
 
-            Instance.HistoricPeriods[newEvent.HistoricPeriod].Add(newEvent);
+            Instance.HistoricPeriods[newEvent.Period].Add(newEvent);
 
             return !eventExists;
         }
