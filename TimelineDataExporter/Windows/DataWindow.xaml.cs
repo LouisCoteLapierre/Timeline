@@ -39,7 +39,16 @@ namespace TimelineDataExporter.Windows
                 var propertyName = propertyInfo.Name;
 
                 column.Header = propertyName;
-                column.Binding = new Binding(propertyName);
+
+                var binding = new Binding(propertyName);
+                if (   String.Compare(propertyName, "StartDate") == 0
+                    || String.Compare(propertyName, "EndDate") == 0
+                    || String.Compare(propertyName, "LastModified") == 0)
+                {
+                    binding.StringFormat = "yyyy/MM/dd";
+                }
+                
+                column.Binding = binding;
 
                 DataGrid.Columns.Add(column);
             }
