@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimelineDataExporter.Windows"
         mc:Ignorable="d"
-        Title="New Data Creation" Height="800" Width="960">
+        Title="New Data Creation" Height="650" Width="960">
     <Window.Resources>
         <ResourceDictionary Source="/TimelineDataExporter;component/Styles/TextBoxStyles.xaml"/>
     </Window.Resources>
@@ -38,7 +38,8 @@
 
         <!-- Description -->
         <Label Grid.Row="1" Content="Description" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Name="DescriptionTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="400"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
+        <TextBox Grid.Row="1" Grid.Column="1" Name="DescriptionTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="250
+"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
 
         <!-- Geographic origin -->
         <Label Grid.Row="2" Content="Geography" ToolTip="Country, city, continent, etc." HorizontalAlignment="Center" Margin="0,0,0,0"  VerticalAlignment="Center"/>
