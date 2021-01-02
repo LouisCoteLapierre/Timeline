@@ -26,8 +26,13 @@ namespace TimelineDataExporter.Models
         {
             foreach (var value in Enum.GetValues(typeof(TimelineHistoricPeriod)))
             {
-                if (HistoricPeriods.ContainsKey((TimelineHistoricPeriod)value))
+                if (HistoricPeriods.TryGetValue((TimelineHistoricPeriod)value, out var historicPeriod))
                 {
+                    if (historicPeriod == null)
+                    {
+                        HistoricPeriods[(TimelineHistoricPeriod)value] = new HistoricPeriod();
+                    }
+
                     continue;
                 }
 
