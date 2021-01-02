@@ -20,7 +20,6 @@ namespace TimelineDataExporter.Data
         public string Type { get; set; }
         public string WikipediaLink { get; set; }
 
-        public List<string> Tags { get; set; } = new List<string>();
         public List<string> RelatedLinks { get; set; } = new List<string>();
 
         public DateTime? LastModified { get; set; }

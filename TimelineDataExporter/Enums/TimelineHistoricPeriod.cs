@@ -7,6 +7,6 @@
         Antiquity,
         MiddleAges,
         Renaissance,
-        Recent,
+        Modern,
     }
 }

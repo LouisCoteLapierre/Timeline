@@ -25,15 +25,7 @@ namespace TimelineDataExporter.Windows
         // WPF Callbacks
         private void OnHistoricPeriodComboBoxInitialized(object sender, EventArgs e)
         {
-            // Add an item for each enum category
-            foreach (var categoryName in Enum.GetNames(typeof(TimelineHistoricPeriod)))
-            {
-                HistoricPeriodComboBox.Items.Add(categoryName);
-            }
-
-            // By default, all new timeline events will go into None.txt unless the user specified a different
-            // historic period
-            HistoricPeriodComboBox.SelectedIndex = 0;
+            InitializeComboBox(HistoricPeriodComboBox, typeof(TimelineHistoricPeriod));
         }
 
         private void OnDataGridInitialized(object sender, EventArgs e)
@@ -68,9 +60,6 @@ namespace TimelineDataExporter.Windows
 
             var title = TitleTextBox.Text;
 
-            var tags = new List<string>();
-            ParseText(TagsTextBox.Text, ref tags, ',', ' ');
-
             var links = new List<string>();
             ParseText(RelatedLinksTextBox.Text, ref links, ',');
 
@@ -87,7 +76,6 @@ namespace TimelineDataExporter.Windows
                 HistoricPeriod = historicPeriod,
                 Type = TypeTextBox.Text,
                 WikipediaLink = WikiLinkTextBox.Text,
-                Tags = tags,
                 RelatedLinks = links,
                 LastModified = now
             };
@@ -98,7 +86,6 @@ namespace TimelineDataExporter.Windows
             // already, we invert that bool
             if (eventExists)
             {
-
                 RemoveEventFromDataGrid(title);
             }
 
@@ -115,7 +102,7 @@ namespace TimelineDataExporter.Windows
 
             var lastSelectedTimelineEvent = (TimelineEvent)DataGrid.SelectedItem;
             var currentlySelectedTimelineEvent = (TimelineEvent)DataGrid.CurrentCell.Item;
-            
+
             if (lastSelectedTimelineEvent != currentlySelectedTimelineEvent && currentlySelectedTimelineEvent != null)
             {
                 // Feed the UI from the timeline event data
@@ -130,7 +117,6 @@ namespace TimelineDataExporter.Windows
                 LastModifiedLabel.Content = currentlySelectedTimelineEvent.LastModified.ToString();
 
                 // Build a tag text from the tags of the event
-                TagsTextBox.Text = BuildTextFromList(currentlySelectedTimelineEvent.Tags, ", ").ToString();
                 RelatedLinksTextBox.Text = BuildTextFromList(currentlySelectedTimelineEvent.RelatedLinks, ", ").ToString();
             }
         }
@@ -193,6 +179,18 @@ namespace TimelineDataExporter.Windows
 
                 i++;
             }
+        }
+
+        private void InitializeComboBox(ComboBox comboBox, Type enumType)
+        {
+            // Add an item for each enum category
+            foreach (var categoryName in Enum.GetNames(enumType))
+            {
+                comboBox.Items.Add(categoryName);
+            }
+
+            // Always the first selected index by default
+            comboBox.SelectedIndex = 0;
         }
     }
 }
