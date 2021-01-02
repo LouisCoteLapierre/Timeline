@@ -11,6 +11,9 @@ it is calculated when the TimelineEvent is created.
 
 In the section Description: add the possibility of 'Enter'
 Add Image section
-Add Oeuvre section
-Dates: Have 3 possibilities of entry: YYYY, MM/YYYY, DD/MM/YYYY
 New Entry/Clear Button, for new page/entry
+Largeur maximale description (Works, Description) 
+WikiLink largeur minimale
+Scroll bar at bottom of the page	
+Scroll bar within the description box
+change order of columns 
