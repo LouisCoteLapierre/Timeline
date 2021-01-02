@@ -47,11 +47,11 @@
         
         <!-- Start date-->
         <Label  Grid.Row="3" Content="Start Date" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
-        <DatePicker Grid.Row="3" Grid.Column="1" Name ="StartDatePicker" Margin="5,5,5,5" Width="150" HorizontalAlignment="Left" SelectedDateFormat="Short" />
+        <TextBox Grid.Row="3" Grid.Column="1" Name ="StartDateTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderDateTextBox}" Width="150" HorizontalAlignment="Left" />
 
         <!-- End date-->
         <Label Grid.Row="4" Content="End Date" HorizontalAlignment="Center" Margin="0,0,0,0"  VerticalAlignment="Center"/>
-        <DatePicker Grid.Row="4" Grid.Column="1" Name="EndDatePicker" Margin="5,5,5,5" Width="150" HorizontalAlignment="Left" SelectedDateFormat="Short"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Name="EndDateTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderDateTextBox}" Width="150" HorizontalAlignment="Left" />
 
         <!-- Historic period combox box-->
         <Label Grid.Row="5" Content="Period" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>

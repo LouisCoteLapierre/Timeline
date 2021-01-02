@@ -40,9 +40,7 @@ namespace TimelineDataExporter.Windows
                 column.Header = propertyName;
 
                 var binding = new Binding(propertyName);
-                if (   String.Compare(propertyName, "StartDate") == 0
-                    || String.Compare(propertyName, "EndDate") == 0
-                    || String.Compare(propertyName, "LastModified") == 0)
+                if (String.Compare(propertyName, "LastModified") == 0)
                 {
                     binding.StringFormat = "yyyy/MM/dd";
                 }
@@ -79,8 +77,8 @@ namespace TimelineDataExporter.Windows
                 Title = title,
                 Description = DescriptionTextBox.Text,
                 Geography = GeographyTextBox.Text,
-                StartDate = StartDatePicker.SelectedDate,
-                EndDate = EndDatePicker.SelectedDate,
+                StartDate = StartDateTextBox.Text,
+                EndDate = EndDateTextBox.Text,
                 Period = historicPeriod,
                 Type = TypeTextBox.Text,
                 WikipediaLink = WikiLinkTextBox.Text,
@@ -117,8 +115,8 @@ namespace TimelineDataExporter.Windows
                 TitleTextBox.Text = currentlySelectedTimelineEvent.Title;
                 DescriptionTextBox.Text = currentlySelectedTimelineEvent.Description;
                 GeographyTextBox.Text = currentlySelectedTimelineEvent.Geography;
-                StartDatePicker.SelectedDate = currentlySelectedTimelineEvent.StartDate;
-                EndDatePicker.SelectedDate = currentlySelectedTimelineEvent.EndDate;
+                StartDateTextBox.Text = currentlySelectedTimelineEvent.StartDate;
+                EndDateTextBox.Text = currentlySelectedTimelineEvent.EndDate;
                 HistoricPeriodComboBox.SelectedIndex = (int)currentlySelectedTimelineEvent.Period;
                 TypeTextBox.Text = currentlySelectedTimelineEvent.Type;
                 WikiLinkTextBox.Text = currentlySelectedTimelineEvent.WikipediaLink;

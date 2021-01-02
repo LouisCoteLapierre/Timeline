@@ -12,8 +12,8 @@ namespace TimelineDataExporter.Data
         public string Description { get; set; }
         public string Geography { get; set; }
 
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
 
         public TimelineHistoricPeriod Period { get; set; }
 
