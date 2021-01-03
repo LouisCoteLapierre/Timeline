@@ -73,10 +73,10 @@ namespace TimelineDataExporter.Windows
             var title = TitleTextBox.Text;
 
             var works = new List<string>();
-            ParseText(WorksTextBox.Text, ref works, ',');
+            ParseText(WorksTextBox.Text, ref works, '/');
 
             var links = new List<string>();
-            ParseText(RelatedLinksTextBox.Text, ref links, ',');
+            ParseText(RelatedLinksTextBox.Text, ref links, '/');
 
             var now = DateTime.Now;
             LastModifiedLabel.Content = now.ToString();
@@ -133,8 +133,8 @@ namespace TimelineDataExporter.Windows
                 LastModifiedLabel.Content = currentlySelectedTimelineEvent.LastModified.ToString();
 
                 // Build a tag text from the tags of the event
-                WorksTextBox.Text = BuildTextFromList(currentlySelectedTimelineEvent.Works, ", ").ToString();
-                RelatedLinksTextBox.Text = BuildTextFromList(currentlySelectedTimelineEvent.RelatedLinks, ", ").ToString();
+                WorksTextBox.Text = BuildTextFromList(currentlySelectedTimelineEvent.Works, "/").ToString();
+                RelatedLinksTextBox.Text = BuildTextFromList(currentlySelectedTimelineEvent.RelatedLinks, "/").ToString();
             }
         }
 
