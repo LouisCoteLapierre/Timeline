@@ -10,4 +10,7 @@ it is calculated when the TimelineEvent is created.
 -Display content of the List<string> instead of (Collection)
 
 Add Image section
-WikiLink largeur minimale
+Create New Entry/Clear Button
+Largeur maximale for Works & Description
+WikiLink largeur minimale par défaut
+Fix Order of dates
