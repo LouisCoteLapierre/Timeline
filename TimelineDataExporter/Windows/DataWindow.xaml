@@ -40,7 +40,7 @@
 
             <!-- Description -->
             <Label Grid.Row="1" Content="Description" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Name="DescriptionTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="250"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
+            <TextBox Grid.Row="1" Grid.Column="1" Name="DescriptionTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="250" Text="" VerticalAlignment="Center" Width="150" TextWrapping="Wrap" AcceptsReturn="true" AcceptsTab="true" SpellCheck.IsEnabled="true" />
 
             <!-- Works -->
             <Label Grid.Row="2" Content="Works" ToolTip="Will create links to other pages from the title of each work separated by commas (,)." HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
@@ -78,14 +78,14 @@
             <Label Grid.Row="10" Content="Last Modified" HorizontalAlignment="Center" Margin="0,0,0,0"  Grid.Column="0" VerticalAlignment="Center" />
             <Label Grid.Row="10" Grid.Column="1" Name="LastModifiedLabel" Margin="5,5,5,5" HorizontalAlignment="Left" Height="23" VerticalAlignment="Center" Width="150" />
 
-            <!-- Create data -->
-            <Button Grid.Row="11" Grid.Column="0" Margin="5,5,5,5" Height="30" Content="Create/Update" Click="OnCreateAndUpdateButtonClicked"/>
-            
             <!-- Clear data-->
-            <Button Grid.Row="11" Grid.Column="1" Margin="5,5,5,5" Height="30" Content="Clear" Click="OnClearDataButtonClicked"/>
+            <Button Grid.Row="11" Grid.Column="0" Margin="5,5,5,5" Height="30" Content="Clear" Click="OnClearDataButtonClicked"/>
             
+            <!-- Create data -->
+            <Button Grid.Row="11" Grid.Column="1" Margin="5,5,5,5" Height="30" Content="Create/Update" Click="OnCreateAndUpdateButtonClicked"/>
+
             <!-- DATA VISUALISATION Column 3 -->
-            <DataGrid Grid.Column="2" Grid.RowSpan="12" Name="DataGrid" Margin="5,5,5,5" CanUserResizeRows="False" KeyDown="OnDataGridKeyDown" CanUserAddRows="False" SelectionMode="Single" CanUserDeleteRows="False" IsReadOnly="true" CurrentCellChanged="OnDataGridCellChanged" Initialized="OnDataGridInitialized" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" MaxWidth="1200" HorizontalScrollBarVisibility="Auto" Height="Auto" MaxHeight="650" VerticalScrollBarVisibility="Auto" />
+            <DataGrid Grid.Column="2" Grid.RowSpan="12" Name="DataGrid" Margin="5,5,5,5" CanUserResizeRows="False" KeyDown="OnDataGridKeyDown" CanUserAddRows="False" SelectionMode="Single" CanUserDeleteRows="False" IsReadOnly="true" CurrentCellChanged="OnDataGridCellChanged" Initialized="OnDataGridInitialized" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" MaxWidth="1200" HorizontalScrollBarVisibility="Auto" Height="Auto" MaxHeight="650" VerticalScrollBarVisibility="Auto" RowHeight="20"/>
         </Grid>
     </ScrollViewer>
 </Window>

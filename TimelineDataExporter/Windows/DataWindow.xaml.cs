@@ -44,8 +44,11 @@ namespace TimelineDataExporter.Windows
                 {
                     binding.StringFormat = "yyyy/MM/dd";
                 }
-                else if (   String.Compare(propertyName, "Description") == 0
-                         || String.Compare(propertyName, "Works") == 0
+                else if (String.Compare(propertyName, "Description") == 0)
+                {
+                    column.MaxWidth = 150;
+                }
+                else if (   String.Compare(propertyName, "Works") == 0
                          || String.Compare(propertyName, "WikiLink") == 0)
                 {
                     column.MaxWidth = 150;

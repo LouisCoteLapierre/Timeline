@@ -9,11 +9,5 @@ it is calculated when the TimelineEvent is created.
 
 -Display content of the List<string> instead of (Collection)
 
-In the section Description: add the possibility of 'Enter'
 Add Image section
-New Entry/Clear Button, for new page/entry
-Largeur maximale description (Works, Description) 
 WikiLink largeur minimale
-Scroll bar at bottom of the page	
-Scroll bar within the description box
-change order of columns 
