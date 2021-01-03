@@ -5,81 +5,84 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimelineDataExporter.Windows"
         mc:Ignorable="d"
-        Title="New Data Creation" Height="Auto" Width="Auto">
+        Title="New Data Creation" Height="{Binding SystemParameters.PrimaryScreenHeight}" 
+        Width="{Binding SystemParameters.PrimaryScreenWidth}" ResizeMode="CanResizeWithGrip">
     <Window.Resources>
         <ResourceDictionary Source="/TimelineDataExporter;component/Styles/TextBoxStyles.xaml"/>
     </Window.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Height="1"/>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Height="1"/>
 
-        <!-- DATA CREATION Column 1 & 2-->
-        <!-- Title -->
-        <Label Content="Title" ToolTip="Must be unique, if it's the same as another, it will be updated instead of created." HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
-        <TextBox Grid.Column="1" Name="TitleTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
+            <!-- DATA CREATION Column 1 & 2-->
+            <!-- Title -->
+            <Label Content="Title" ToolTip="Must be unique, if it's the same as another, it will be updated instead of created." HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Name="TitleTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
 
-        <!-- Description -->
-        <Label Grid.Row="1" Content="Description" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Name="DescriptionTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="250"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
+            <!-- Description -->
+            <Label Grid.Row="1" Content="Description" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="DescriptionTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="250"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
 
-        <!-- Works -->
-        <Label Grid.Row="2" Content="Works" ToolTip="Will create links to other pages from the title of each work separated by commas (,)." HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Name="WorksTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
+            <!-- Works -->
+            <Label Grid.Row="2" Content="Works" ToolTip="Will create links to other pages from the title of each work separated by commas (,)." HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Name="WorksTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
 
-        <!-- Start date-->
-        <Label  Grid.Row="3" Content="Start Date" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Name ="StartDateTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderDateTextBox}" Width="150" HorizontalAlignment="Left" />
+            <!-- Start date-->
+            <Label  Grid.Row="3" Content="Start Date" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Name ="StartDateTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderDateTextBox}" Width="150" HorizontalAlignment="Left" />
 
-        <!-- End date-->
-        <Label Grid.Row="4" Content="End Date" HorizontalAlignment="Center" Margin="0,0,0,0"  VerticalAlignment="Center"/>
-        <TextBox Grid.Row="4" Grid.Column="1" Name="EndDateTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderDateTextBox}" Width="150" HorizontalAlignment="Left" />
+            <!-- End date-->
+            <Label Grid.Row="4" Content="End Date" HorizontalAlignment="Center" Margin="0,0,0,0"  VerticalAlignment="Center"/>
+            <TextBox Grid.Row="4" Grid.Column="1" Name="EndDateTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderDateTextBox}" Width="150" HorizontalAlignment="Left" />
 
-        <!-- Geographic origin -->
-        <Label Grid.Row="5" Content="Geography" ToolTip="Country, city, continent, etc." HorizontalAlignment="Center" Margin="0,0,0,0"  VerticalAlignment="Center"/>
-        <TextBox Grid.Row="5" Grid.Column="1" Name="GeographyTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
+            <!-- Geographic origin -->
+            <Label Grid.Row="5" Content="Geography" ToolTip="Country, city, continent, etc." HorizontalAlignment="Center" Margin="0,0,0,0"  VerticalAlignment="Center"/>
+            <TextBox Grid.Row="5" Grid.Column="1" Name="GeographyTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
 
-        <!-- Type -->
-        <Label  Grid.Row="6" Content="Type" ToolTip="Politician title, art category, event type (war, invention, etc), etc." HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="6" Grid.Column="1" Name="TypeTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
-        
-        <!-- Related Links -->
-        <Label Grid.Row="7" Content="Related Links" ToolTip="Will create related links from Titles separated by commas (,), must be the exact Title of the corresponding link" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="7" Grid.Column="1" Name="RelatedLinksTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
+            <!-- Type -->
+            <Label  Grid.Row="6" Content="Type" ToolTip="Politician title, art category, event type (war, invention, etc), etc." HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="6" Grid.Column="1" Name="TypeTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
 
-        <!-- Wikipedia Link -->
-        <Label Grid.Row="8" Content="Wiki Link" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="8" Grid.Column="1" Name="WikiLinkTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
+            <!-- Related Links -->
+            <Label Grid.Row="7" Content="Related Links" ToolTip="Will create related links from Titles separated by commas (,), must be the exact Title of the corresponding link" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="7" Grid.Column="1" Name="RelatedLinksTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
 
-        <!-- Historic period combox box-->
-        <Label Grid.Row="9" Content="Period" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
-        <ComboBox Grid.Row="9" Grid.Column="1" Name="HistoricPeriodComboBox" Initialized="OnHistoricPeriodComboBoxInitialized" Margin="5,5,5,5" HorizontalAlignment="Left"/>
+            <!-- Wikipedia Link -->
+            <Label Grid.Row="8" Content="Wiki Link" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="8" Grid.Column="1" Name="WikiLinkTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
 
-        <!-- Last Modified -->
-        <Label Grid.Row="10" Content="Last Modified" HorizontalAlignment="Center" Margin="0,0,0,0"  Grid.Column="0" VerticalAlignment="Center" />
-        <Label Grid.Row="10" Grid.Column="1" Name="LastModifiedLabel" Margin="5,5,5,5" HorizontalAlignment="Left" Height="23" VerticalAlignment="Center" Width="150" />
+            <!-- Historic period combox box-->
+            <Label Grid.Row="9" Content="Period" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="9" Grid.Column="1" Name="HistoricPeriodComboBox" Initialized="OnHistoricPeriodComboBoxInitialized" Margin="5,5,5,5" HorizontalAlignment="Left"/>
 
-        <!-- Create data -->
-        <Button Grid.Row="11" Margin="5,5,5,5" Grid.ColumnSpan="2" Height="30" Content="Create/Update" Click="OnCreateAndUpdateTimelineEvent"/>
+            <!-- Last Modified -->
+            <Label Grid.Row="10" Content="Last Modified" HorizontalAlignment="Center" Margin="0,0,0,0"  Grid.Column="0" VerticalAlignment="Center" />
+            <Label Grid.Row="10" Grid.Column="1" Name="LastModifiedLabel" Margin="5,5,5,5" HorizontalAlignment="Left" Height="23" VerticalAlignment="Center" Width="150" />
 
-        <!-- DATA VISUALISATION Column 3 -->
-        <DataGrid Grid.Column="2" Grid.RowSpan="12" Name="DataGrid" Margin="5,5,5,5" CanUserResizeRows="False" KeyDown="OnDataGridKeyDown" CanUserAddRows="False" SelectionMode="Single" CanUserDeleteRows="False" IsReadOnly="true" CurrentCellChanged="OnDataGridCellChanged" Initialized="OnDataGridInitialized" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" MaxHeight="650" VerticalScrollBarVisibility="Auto" />
-    </Grid>
+            <!-- Create data -->
+            <Button Grid.Row="11" Margin="5,5,5,5" Grid.ColumnSpan="2" Height="30" Content="Create/Update" Click="OnCreateAndUpdateTimelineEvent"/>
+
+            <!-- DATA VISUALISATION Column 3 -->
+            <DataGrid Grid.Column="2" Grid.RowSpan="12" Name="DataGrid" Margin="5,5,5,5" CanUserResizeRows="False" KeyDown="OnDataGridKeyDown" CanUserAddRows="False" SelectionMode="Single" CanUserDeleteRows="False" IsReadOnly="true" CurrentCellChanged="OnDataGridCellChanged" Initialized="OnDataGridInitialized" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" MaxWidth="1200" HorizontalScrollBarVisibility="Auto" Height="Auto" MaxHeight="650" VerticalScrollBarVisibility="Auto" />
+        </Grid>
+    </ScrollViewer>
 </Window>
