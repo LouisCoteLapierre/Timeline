@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimelineDataExporter.Windows"
         mc:Ignorable="d"
-        Title="New Data Creation" Height="675" Width="960">
+        Title="New Data Creation" Height="Auto" Width="Auto">
     <Window.Resources>
         <ResourceDictionary Source="/TimelineDataExporter;component/Styles/TextBoxStyles.xaml"/>
     </Window.Resources>
@@ -80,6 +80,6 @@
         <Button Grid.Row="11" Margin="5,5,5,5" Grid.ColumnSpan="2" Height="30" Content="Create/Update" Click="OnCreateAndUpdateTimelineEvent"/>
 
         <!-- DATA VISUALISATION Column 3 -->
-        <DataGrid Grid.Column="2" Grid.RowSpan="5" Name="DataGrid" Margin="5,5,5,5" CanUserResizeRows="False" KeyDown="OnDataGridKeyDown" CanUserAddRows="False" SelectionMode="Single" CanUserDeleteRows="False" IsReadOnly="true" CurrentCellChanged="OnDataGridCellChanged" Initialized="OnDataGridInitialized" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" />
+        <DataGrid Grid.Column="2" Grid.RowSpan="12" Name="DataGrid" Margin="5,5,5,5" CanUserResizeRows="False" KeyDown="OnDataGridKeyDown" CanUserAddRows="False" SelectionMode="Single" CanUserDeleteRows="False" IsReadOnly="true" CurrentCellChanged="OnDataGridCellChanged" Initialized="OnDataGridInitialized" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" MaxHeight="650" VerticalScrollBarVisibility="Auto" />
     </Grid>
 </Window>
