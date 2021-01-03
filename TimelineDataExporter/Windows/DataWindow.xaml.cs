@@ -66,7 +66,7 @@ namespace TimelineDataExporter.Windows
             }
         }
 
-        private void OnCreateAndUpdateTimelineEvent(object sender, RoutedEventArgs e)
+        private void OnCreateAndUpdateButtonClicked(object sender, RoutedEventArgs e)
         {
             var historicPeriod = (TimelineHistoricPeriod)Enum.Parse(typeof(TimelineHistoricPeriod), HistoricPeriodComboBox.SelectedValue.ToString());
 
@@ -106,6 +106,22 @@ namespace TimelineDataExporter.Windows
             }
 
             DataGrid.Items.Add(newTimelineEvent);
+        }
+
+        private void OnClearDataButtonClicked(object sender, RoutedEventArgs e)
+        {
+            TitleTextBox.Text = String.Empty;
+            DescriptionTextBox.Text = String.Empty;
+            GeographyTextBox.Text = String.Empty;
+            StartDateTextBox.Text = String.Empty;
+            EndDateTextBox.Text = String.Empty;
+            TypeTextBox.Text = String.Empty;
+            WikiLinkTextBox.Text = String.Empty;
+            LastModifiedLabel.Content = String.Empty;
+            WorksTextBox.Text = String.Empty;
+            RelatedLinksTextBox.Text = String.Empty;
+
+            HistoricPeriodComboBox.SelectedIndex = 0;
         }
 
         private void OnDataGridCellChanged(object sender, EventArgs e)
