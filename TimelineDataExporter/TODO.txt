@@ -7,10 +7,8 @@ any [] in the text and if so will replace the text between the [] with a link to
 TimelineEvent's page. The text between the [] will be used to calculate the hash the same way
 it is calculated when the TimelineEvent is created.
 
--Display content of the List<string> instead of (Collection)
-
+Display content of the List <string> instead of (Collection)
 Add Image section
-Create New Entry/Clear Button
-Largeur maximale for Works & Description
 WikiLink largeur minimale par défaut
 Fix Order of dates
+Keep order of list in spite of updates (Every update brings the entry to the bottom of the list)
