@@ -26,6 +26,7 @@ namespace TimelineDataExporter.Windows
         private void OnHistoricPeriodComboBoxInitialized(object sender, EventArgs e)
         {
             InitializeComboBox(HistoricPeriodComboBox, typeof(TimelineHistoricPeriod));
+            HistoricPeriodComboBox.SelectedIndex = (int)(TimelineHistoricPeriod.Modern);
         }
 
         private void OnDataGridInitialized(object sender, EventArgs e)
@@ -48,10 +49,9 @@ namespace TimelineDataExporter.Windows
                 {
                     column.MaxWidth = 150;
                 }
-                else if (   String.Compare(propertyName, "Works") == 0
-                         || String.Compare(propertyName, "WikiLink") == 0)
+                else if (String.Compare(propertyName, "WikiLink") == 0)
                 {
-                    column.MaxWidth = 150;
+                    column.MaxWidth = 40;
                 }
                 
                 column.Binding = binding;
@@ -62,9 +62,9 @@ namespace TimelineDataExporter.Windows
             // Add rows from the DataModel
             foreach (var historicPeriodEventsDictionary in HistoricPeriodsModel.Instance.HistoricPeriods)
             {
-                foreach (var timelineEvent in historicPeriodEventsDictionary.Value)
+                foreach (var timelineEventPair in historicPeriodEventsDictionary.Value)
                 {
-                    DataGrid.Items.Add(timelineEvent.Value);
+                    DataGrid.Items.Add(timelineEventPair.Value);
                 }
             }
         }
@@ -89,8 +89,8 @@ namespace TimelineDataExporter.Windows
                 Title = title,
                 Description = DescriptionTextBox.Text,
                 Geography = GeographyTextBox.Text,
-                StartDate = StartDateTextBox.Text,
-                EndDate = EndDateTextBox.Text,
+                Start = StartTextBox.Text,
+                End = EndTextBox.Text,
                 Period = historicPeriod,
                 Type = TypeTextBox.Text,
                 WikiLink = WikiLinkTextBox.Text,
@@ -116,8 +116,8 @@ namespace TimelineDataExporter.Windows
             TitleTextBox.Text = String.Empty;
             DescriptionTextBox.Text = String.Empty;
             GeographyTextBox.Text = String.Empty;
-            StartDateTextBox.Text = String.Empty;
-            EndDateTextBox.Text = String.Empty;
+            StartTextBox.Text = String.Empty;
+            EndTextBox.Text = String.Empty;
             TypeTextBox.Text = String.Empty;
             WikiLinkTextBox.Text = String.Empty;
             LastModifiedLabel.Content = String.Empty;
@@ -144,8 +144,8 @@ namespace TimelineDataExporter.Windows
                 TitleTextBox.Text = currentlySelectedTimelineEvent.Title;
                 DescriptionTextBox.Text = currentlySelectedTimelineEvent.Description;
                 GeographyTextBox.Text = currentlySelectedTimelineEvent.Geography;
-                StartDateTextBox.Text = currentlySelectedTimelineEvent.StartDate;
-                EndDateTextBox.Text = currentlySelectedTimelineEvent.EndDate;
+                StartTextBox.Text = currentlySelectedTimelineEvent.Start;
+                EndTextBox.Text = currentlySelectedTimelineEvent.End;
                 HistoricPeriodComboBox.SelectedIndex = (int)currentlySelectedTimelineEvent.Period;
                 TypeTextBox.Text = currentlySelectedTimelineEvent.Type;
                 WikiLinkTextBox.Text = currentlySelectedTimelineEvent.WikiLink;

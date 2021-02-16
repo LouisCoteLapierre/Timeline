@@ -14,8 +14,8 @@ namespace TimelineDataExporter.Data
 
         public List<string> Works { get; set; } = new List<string>();
 
-        public string StartDate { get; set; }
-        public string EndDate { get; set; }
+        public string Start { get; set; }
+        public string End { get; set; }
         public string Geography { get; set; }
         public string Type { get; set; }
 

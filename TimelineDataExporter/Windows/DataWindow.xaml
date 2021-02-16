@@ -40,19 +40,19 @@
 
             <!-- Description -->
             <Label Grid.Row="1" Content="Description" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Name="DescriptionTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="250" Text="" VerticalAlignment="Center" Width="150" TextWrapping="Wrap" AcceptsReturn="true" AcceptsTab="true" SpellCheck.IsEnabled="true" />
+            <TextBox Grid.Row="1" Grid.Column="1" Name="DescriptionTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" Height="250" Text="" VerticalAlignment="Center" Width="150" TextWrapping="Wrap" AcceptsReturn="true" AcceptsTab="true" />
 
             <!-- Works -->
             <Label Grid.Row="2" Content="Works" ToolTip="Will create links to other pages from the title of each work separated by commas (,)." HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
             <TextBox Grid.Row="2" Grid.Column="1" Name="WorksTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderTextBox}" HorizontalAlignment="Left" MinHeight="23" Height="Auto" MaxHeight="100" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" />
 
-            <!-- Start date-->
-            <Label  Grid.Row="3" Content="Start Date" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="3" Grid.Column="1" Name ="StartDateTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderDateTextBox}" Width="150" HorizontalAlignment="Left" />
+            <!-- Start -->
+            <Label  Grid.Row="3" Content="Start" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Name ="StartTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderDateTextBox}" Width="150" HorizontalAlignment="Left" />
 
-            <!-- End date-->
-            <Label Grid.Row="4" Content="End Date" HorizontalAlignment="Center" Margin="0,0,0,0"  VerticalAlignment="Center"/>
-            <TextBox Grid.Row="4" Grid.Column="1" Name="EndDateTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderDateTextBox}" Width="150" HorizontalAlignment="Left" />
+            <!-- End -->
+            <Label Grid.Row="4" Content="End" HorizontalAlignment="Center" Margin="0,0,0,0"  VerticalAlignment="Center"/>
+            <TextBox Grid.Row="4" Grid.Column="1" Name="EndTextBox" Margin="5,5,5,5" Style="{StaticResource PlaceholderDateTextBox}" Width="150" HorizontalAlignment="Left" />
 
             <!-- Geographic origin -->
             <Label Grid.Row="5" Content="Geography" ToolTip="Country, city, continent, etc." HorizontalAlignment="Center" Margin="0,0,0,0"  VerticalAlignment="Center"/>
