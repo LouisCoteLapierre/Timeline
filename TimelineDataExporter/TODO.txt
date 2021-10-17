@@ -9,6 +9,5 @@ it is calculated when the TimelineEvent is created.
 
 Display content of the List <string> instead of (Collection)
 Add Image section
-WikiLink largeur minimale par défaut
 Fix Order of dates
 Keep order of list in spite of updates (Every update brings the entry to the bottom of the list)
