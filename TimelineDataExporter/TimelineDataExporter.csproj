@@ -63,10 +63,18 @@
     <Compile Include="Enums\TimelineHistoricPeriod.cs" />
     <Compile Include="Models\HistoricPeriodsModel.cs" />
     <Compile Include="Serialization\IJsonSerializable.cs" />
+    <Compile Include="Sorting\Comparers\StringDateComparer.cs" />
+    <Compile Include="Windows\DataVisualisation.xaml.cs">
+      <DependentUpon>DataVisualisation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\DataWindow.xaml.cs">
       <DependentUpon>DataWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Styles\TextBoxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DataVisualisation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -116,7 +124,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Source\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

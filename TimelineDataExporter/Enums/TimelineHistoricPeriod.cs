@@ -8,5 +8,6 @@
         MiddleAges,
         Renaissance,
         Modern,
+        Contemporary,
     }
 }
