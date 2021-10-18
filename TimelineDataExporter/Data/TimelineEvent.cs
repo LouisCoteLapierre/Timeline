@@ -11,19 +11,15 @@ namespace TimelineDataExporter.Data
         // The order of declaration here makes the order of columns in the datagrid view
         public string Title { get; set; }
         public string Description { get; set; }
-
-        public List<string> Works { get; set; } = new List<string>();
-
         public string Start { get; set; }
         public string End { get; set; }
         public string Geography { get; set; }
         public string Type { get; set; }
-
-        public List<string> RelatedLinks { get; set; } = new List<string>();
-
+        public TimelineHistoricPeriod Period { get; set; }
         public string WikiLink { get; set; }
 
-        public TimelineHistoricPeriod Period { get; set; }
+        public List<string> Works { get; set; } = new List<string>();
+        public List<string> RelatedLinks { get; set; } = new List<string>();
 
         public DateTime? LastModified { get; set; }
     }
