@@ -33,11 +33,14 @@ namespace TimelineDataExporter
                 // Trim the files extension
                 var noExtensionFileName = txtFilePath.Replace(".txt", "");
                 noExtensionFileName = noExtensionFileName.Substring(noExtensionFileName.LastIndexOf("/") + 1);
+
                 // Read them and populate our DataContainers
                 using (var reader = new StreamReader(txtFilePath))
                 {
-                    HistoricPeriodsModel.Instance.HistoricPeriods.Add((TimelineHistoricPeriod)Enum.Parse(typeof(TimelineHistoricPeriod), noExtensionFileName),
-                                                          JsonConvert.DeserializeObject<HistoricPeriod>(reader.ReadToEnd()));
+                    var historicPeriodEnum = (TimelineHistoricPeriod)Enum.Parse(typeof(TimelineHistoricPeriod), noExtensionFileName);
+                    var historicPeriod = JsonConvert.DeserializeObject<HistoricPeriod>(reader.ReadToEnd());
+
+                    HistoricPeriodsModel.Instance.AddHistoricPeriod(historicPeriodEnum, historicPeriod);
                 }
             }
 
@@ -71,16 +74,16 @@ namespace TimelineDataExporter
             if (!Directory.Exists(directoryPath))
             {
                 Directory.CreateDirectory(directoryPath);
+            }
 
-                // Create a file for each historic category
-                foreach (var categoryName in Enum.GetNames(typeof(TimelineHistoricPeriod)))
+            // Create a file for each historic category
+            foreach (var categoryName in Enum.GetNames(typeof(TimelineHistoricPeriod)))
+            {
+                var pathBuilder = new StringBuilder(directoryPath + "/" + categoryName + ".txt");
+                var path = pathBuilder.ToString();
+                if (!File.Exists(path))
                 {
-                    var pathBuilder = new StringBuilder(directoryPath + "/" + categoryName + ".txt");
-                    var path = pathBuilder.ToString();
-                    if (!File.Exists(path))
-                    {
-                        File.Create(path);
-                    }
+                    File.Create(path);
                 }
             }
         }

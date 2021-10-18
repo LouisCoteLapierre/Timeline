@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 using TimelineDataExporter.Data;
 using TimelineDataExporter.Enums;
@@ -17,11 +18,14 @@ namespace TimelineDataExporter.Models
             }
         }
 
-        public Dictionary<TimelineHistoricPeriod, HistoricPeriod> HistoricPeriods { get; set; } = new Dictionary<TimelineHistoricPeriod, HistoricPeriod>();
-
         private HistoricPeriodsModel() { }
         static HistoricPeriodsModel() { }
 
+        // Check if we can have a Dictionary<Period, ObservableCollection> and use that binding in the DataWindow and have multiple tabs,
+        // so multiple datagrid, each datagrid would bind its item to the corresponding ObservableCollection in the dictionary (one for each period)
+        public Dictionary<TimelineHistoricPeriod, HistoricPeriod> HistoricPeriods { get; set; } = new Dictionary<TimelineHistoricPeriod, HistoricPeriod>();
+        public ObservableCollection<TimelineEvent> AllEventsList { get; set; } = new ObservableCollection<TimelineEvent>();
+        
         public void VerifyIntegrity()
         {
             foreach (var value in Enum.GetValues(typeof(TimelineHistoricPeriod)))
@@ -37,6 +41,28 @@ namespace TimelineDataExporter.Models
                 }
 
                 HistoricPeriods.Add((TimelineHistoricPeriod)value, new HistoricPeriod());
+            }
+        }
+
+        public void AddHistoricPeriod(TimelineHistoricPeriod historicPeriodEnum, HistoricPeriod historicPeriod)
+        {
+            if (historicPeriod == null)
+            {
+                return;
+            }
+
+            if (HistoricPeriods.ContainsKey(historicPeriodEnum))
+            {
+                HistoricPeriods[historicPeriodEnum] = historicPeriod;
+            }
+            else
+            {
+                HistoricPeriods.Add(historicPeriodEnum, historicPeriod);
+            }
+
+            foreach (var timelineEventPair in historicPeriod)
+            {
+                AllEventsList.Add(timelineEventPair.Value);
             }
         }
 
@@ -56,11 +82,23 @@ namespace TimelineDataExporter.Models
                         historicPeriodPair.Value.Remove(newEvent.Title);
                     }
 
+                    // Todo : Check if instead of deleting and adding, we can just update the TimelineEvent
+                    foreach (var timelineEvent in AllEventsList)
+                    {
+                        if (timelineEvent.Title.Equals(newEvent.Title))
+                        {
+                            AllEventsList.Remove(timelineEvent);
+                            break;
+                        }
+                    }
+
                     eventExists = true;
+                    break;
                 }
             }
 
             Instance.HistoricPeriods[newEvent.Period].Add(newEvent);
+            AllEventsList.Add(newEvent);
 
             return !eventExists;
         }
@@ -72,6 +110,15 @@ namespace TimelineDataExporter.Models
             {
                 if (historicPeriodPair.Value.Remove(title))
                 {
+                    foreach (var timelineEvent in AllEventsList)
+                    {
+                        if (timelineEvent.Title.Equals(title))
+                        {
+                            AllEventsList.Remove(timelineEvent);
+                            break;
+                        }
+                    }
+
                     return true;
                 }
             }
