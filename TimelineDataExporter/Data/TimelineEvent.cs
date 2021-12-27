@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 
+using TimelineDataExporter.Containers;
 using TimelineDataExporter.Enums;
-using TimelineDataExporter.Serialization;
 
 namespace TimelineDataExporter.Data
 {
-    public class TimelineEvent : IJsonSerializable
+    public class TimelineEvent
     {
         // The order of declaration here makes the order of columns in the datagrid view
         public string Title { get; set; }
@@ -18,8 +17,8 @@ namespace TimelineDataExporter.Data
         public TimelineHistoricPeriod Period { get; set; }
         public string WikiLink { get; set; }
 
-        public List<string> Works { get; set; } = new List<string>();
-        public List<string> RelatedLinks { get; set; } = new List<string>();
+        public FormattedList<string> Works { get; set; } = new FormattedList<string>();
+        public FormattedList<string> RelatedLinks { get; set; } = new FormattedList<string>();
 
         public DateTime? LastModified { get; set; }
     }

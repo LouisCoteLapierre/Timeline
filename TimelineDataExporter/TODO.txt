@@ -9,15 +9,12 @@ it is calculated when the TimelineEvent is created.
 
 Display content of the List <string> instead of (Collection)
 Add Image section
-Fix Order of dates (-500000, -200, 5, 50, 10000)
 Keep order of list in spite of updates (Every update brings the entry to the bottom of the list) not a priority
 Make scroller more visible (contrast)
 Follow selected entry when the order is changed in list
 Create a visual option for family trees (Mythology)
 Make Vertical scroll bar always visible
-
-
+When typing a letter, scroll to the first element that starts with that letter
 
 SIMPLE ONES:
-Default period: Contemporary
 Show amount of entries

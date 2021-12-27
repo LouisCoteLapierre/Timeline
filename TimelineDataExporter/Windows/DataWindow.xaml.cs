@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -7,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-
+using TimelineDataExporter.Containers;
 using TimelineDataExporter.Data;
 using TimelineDataExporter.Enums;
 using TimelineDataExporter.Models;
@@ -29,7 +28,7 @@ namespace TimelineDataExporter.Windows
         private void OnHistoricPeriodComboBoxInitialized(object sender, EventArgs e)
         {
             InitializeComboBox(HistoricPeriodComboBox, typeof(TimelineHistoricPeriod));
-            HistoricPeriodComboBox.SelectedIndex = (int)(TimelineHistoricPeriod.Contemporary);
+            HistoricPeriodComboBox.SelectedIndex = (int)TimelineHistoricPeriod.Contemporary;
         }
 
         private void OnDataGridInitialized(object sender, EventArgs e)
@@ -122,8 +121,8 @@ namespace TimelineDataExporter.Windows
                 Period = historicPeriod,
                 Type = TypeTextBox.Text,
                 WikiLink = WikiLinkTextBox.Text,
-                Works = works,
-                RelatedLinks = links,
+                Works = FormattedList<string>.CreateFormattedList(works),
+                RelatedLinks = FormattedList<string>.CreateFormattedList(links),
                 LastModified = now
             };
 
@@ -203,7 +202,7 @@ namespace TimelineDataExporter.Windows
             }
         }
 
-        private StringBuilder BuildTextFromList(List<string> texts, string separator)
+        private StringBuilder BuildTextFromList(FormattedList<string> texts, string separator)
         {
             var stringBuilder = new StringBuilder();
             foreach (var text in texts)

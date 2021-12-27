@@ -16,6 +16,10 @@ namespace TimelineDataExporter.Sorting.Comparers
         {
             TimelineEvent timelineEventX = (TimelineEvent)x;
             TimelineEvent timelineEventY = (TimelineEvent)y;
+            if (timelineEventX == null || timelineEventY == null)
+            {
+                return 0;
+            }
 
             string stringX = CompareStart ? timelineEventX.Start : CompareEnd ? timelineEventX.End : string.Empty;
             stringX = stringX.Replace(" ", string.Empty);
@@ -33,7 +37,7 @@ namespace TimelineDataExporter.Sorting.Comparers
             }
             if (isXEmpty && !isYEmpty)
             {
-                return Direction == ListSortDirection.Ascending ? - 1 : 1;
+                return Direction == ListSortDirection.Ascending ? -1 : 1;
             }
             if (isYEmpty && !isXEmpty)
             {
