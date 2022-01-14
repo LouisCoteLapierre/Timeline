@@ -63,6 +63,7 @@
     <Compile Include="Data\TimelineEvent.cs" />
     <Compile Include="Enums\TimelineHistoricPeriod.cs" />
     <Compile Include="Models\HistoricPeriodsModel.cs" />
+    <Compile Include="Sorting\Comparers\TimelineEventComparer.cs" />
     <Compile Include="Sorting\Comparers\StringDateComparer.cs" />
     <Compile Include="Windows\DataVisualisation.xaml.cs">
       <DependentUpon>DataVisualisation.xaml</DependentUpon>

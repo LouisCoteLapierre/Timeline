@@ -55,7 +55,9 @@ namespace TimelineDataExporter.Windows
                     }
                 }
                
-                if (string.Compare(header, "Description") == 0)
+                if (   string.Compare(header, "Description") == 0
+                    || string.Compare(header, "Works") == 0
+                    || string.Compare(header, "RelatedLinks") == 0)
                 {
                     column.MaxWidth = 150;
                 }
@@ -159,33 +161,58 @@ namespace TimelineDataExporter.Windows
 
             if (lastSelectedTimelineEvent != currentlySelectedTimelineEvent && currentlySelectedTimelineEvent != null)
             {
-                // Feed the UI from the timeline event data
-                TitleTextBox.Text = currentlySelectedTimelineEvent.Title;
-                DescriptionTextBox.Text = currentlySelectedTimelineEvent.Description;
-                GeographyTextBox.Text = currentlySelectedTimelineEvent.Geography;
-                StartTextBox.Text = currentlySelectedTimelineEvent.Start;
-                EndTextBox.Text = currentlySelectedTimelineEvent.End;
-                HistoricPeriodComboBox.SelectedIndex = (int)currentlySelectedTimelineEvent.Period;
-                TypeTextBox.Text = currentlySelectedTimelineEvent.Type;
-                WikiLinkTextBox.Text = currentlySelectedTimelineEvent.WikiLink;
-                LastModifiedLabel.Content = currentlySelectedTimelineEvent.LastModified.ToString();
-
-                // Build a tag text from the tags of the event
-                WorksTextBox.Text = BuildTextFromList(currentlySelectedTimelineEvent.Works, "/").ToString();
-                RelatedLinksTextBox.Text = BuildTextFromList(currentlySelectedTimelineEvent.RelatedLinks, "/").ToString();
+                UpdateDataCreationSection(currentlySelectedTimelineEvent);
             }
         }
 
-        private void OnDataGridKeyDown(object sender, KeyEventArgs args)
+        private void UpdateDataCreationSection(TimelineEvent timelineEvent)
         {
-            // Check if the key press was delete or backspace, if so, delete the selected entry (check the title)
-            // If not those keys, don't do anything
-            if (args.Key != Key.Back && args.Key != Key.Delete)
+            if (timelineEvent == null)
             {
                 return;
             }
 
-            HistoricPeriodsModel.Instance.RemoveEntry(TitleTextBox.Text);
+            // Feed the UI from the timeline event data
+            TitleTextBox.Text = timelineEvent.Title;
+            DescriptionTextBox.Text = timelineEvent.Description;
+            GeographyTextBox.Text = timelineEvent.Geography;
+            StartTextBox.Text = timelineEvent.Start;
+            EndTextBox.Text = timelineEvent.End;
+            HistoricPeriodComboBox.SelectedIndex = (int)timelineEvent.Period;
+            TypeTextBox.Text = timelineEvent.Type;
+            WikiLinkTextBox.Text = timelineEvent.WikiLink;
+            LastModifiedLabel.Content = timelineEvent.LastModified.ToString();
+
+            // Build a tag text from the tags of the event
+            WorksTextBox.Text = BuildTextFromList(timelineEvent.Works, "/").ToString();
+            RelatedLinksTextBox.Text = BuildTextFromList(timelineEvent.RelatedLinks, "/").ToString();
+        }
+
+        private void OnDataWindowKeyDown(object sender, KeyEventArgs args)
+        {
+            // Those keys are reserved for the data grid
+            if (   args.Key == Key.Back
+                || args.Key == Key.Delete)
+            {
+                var selectedEvent = (TimelineEvent)DataGrid.SelectedItem;
+                if (selectedEvent != null)
+                {
+                    HistoricPeriodsModel.Instance.RemoveEntry(selectedEvent);
+                }
+            }
+            else if (args.Key >= Key.A && args.Key <= Key.Z)
+            {
+                // Scroll to the first element of that letter
+                var timelineEvent = HistoricPeriodsModel.Instance.GetFirstEventForLetter(args.Key);
+                if (timelineEvent != null)
+                {
+                    DataGrid.SelectedItem = timelineEvent;
+                    DataGrid.UpdateLayout();
+                    DataGrid.ScrollIntoView(DataGrid.SelectedItem);
+
+                    UpdateDataCreationSection(DataGrid.SelectedItem as TimelineEvent);
+                }
+            }
         }
 
         // Helper methods

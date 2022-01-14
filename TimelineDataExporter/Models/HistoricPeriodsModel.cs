@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Input;
 
 using TimelineDataExporter.Data;
 using TimelineDataExporter.Enums;
+using TimelineDataExporter.Sorting.Comparers;
 
 namespace TimelineDataExporter.Models
 {
@@ -124,6 +127,37 @@ namespace TimelineDataExporter.Models
             }
 
             return false;
+        }
+
+        public bool RemoveEntry(TimelineEvent eventToRemove)
+        {
+            return eventToRemove != null ? RemoveEntry(eventToRemove.Title) : false;
+        }
+
+        public TimelineEvent GetFirstEventForLetter(Key Letter)
+        { 
+            // Prepare the list and sort it alphabetically so we can find our event afterwards
+            List<TimelineEvent> Test = AllEventsList.ToList();
+            Test.Sort(new TimelineEventComparer<TimelineEvent>());
+
+            // Find the first event that matches the sent letter
+            return Test.First(timelineEvent =>
+            {
+                if (string.Compare(timelineEvent.Title, "") == 0)
+                {
+                    return false;
+                }
+
+                string letterToCompare = Letter.ToString().ToLower();
+                string titleFirstLetter = timelineEvent.Title[0].ToString().ToLower();
+
+                if (string.Compare(letterToCompare, titleFirstLetter) == 0)
+                {
+                    return true;
+                }
+
+                return false;
+            });
         }
 
         private static readonly HistoricPeriodsModel instance = new HistoricPeriodsModel();

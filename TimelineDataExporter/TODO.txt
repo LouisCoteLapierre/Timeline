@@ -7,14 +7,13 @@ any [] in the text and if so will replace the text between the [] with a link to
 TimelineEvent's page. The text between the [] will be used to calculate the hash the same way
 it is calculated when the TimelineEvent is created.
 
-Display content of the List <string> instead of (Collection)
 Add Image section
 Keep order of list in spite of updates (Every update brings the entry to the bottom of the list) not a priority
 Make scroller more visible (contrast)
 Follow selected entry when the order is changed in list
 Create a visual option for family trees (Mythology)
 Make Vertical scroll bar always visible
-When typing a letter, scroll to the first element that starts with that letter
+When the current column is Title, keypress checks title, if its start/end/geography/type, it checks those attributes instead
 
 SIMPLE ONES:
 Show amount of entries
