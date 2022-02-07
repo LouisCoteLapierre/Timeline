@@ -1,1 +1,1 @@
-{"TimelineEvents":{"sion falls to king david":{"Title":"Sion Falls to king David","Description":"Said the last inpenetrable citadelle of Canaan\r\n\r\nDavid establishes his Capital: Jerusalem","Start":"","End":"","Geography":"","Type":"","Period":0,"WikiLink":"","Works":[],"RelatedLinks":[],"LastModified":"2022-02-02T15:15:26.7171887-05:00"}}}
+{"TimelineEvents":{}}
