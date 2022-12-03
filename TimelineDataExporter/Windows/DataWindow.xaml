@@ -30,6 +30,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Height="1"/>
 
@@ -86,6 +87,9 @@
 
             <!-- DATA VISUALISATION Column 3 -->
             <DataGrid Grid.Column="2" Grid.RowSpan="12" Name="DataGrid" Margin="5,5,5,5" CanUserResizeRows="False" CanUserAddRows="False" SelectionMode="Single" CanUserDeleteRows="False" IsReadOnly="true" CurrentCellChanged="OnDataGridCellChanged" Initialized="OnDataGridInitialized" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" MaxWidth="1200" HorizontalScrollBarVisibility="Auto" Height="Auto" MaxHeight="650" VerticalScrollBarVisibility="Auto" RowHeight="20" KeyDown="OnDataWindowKeyDown"/>
+
+            <!-- Stats -->
+            <Label Name="NumberOfEntries" Grid.Row="12" Grid.ColumnSpan="3" Content="Number Of Entries: 10" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
         </Grid>
     </ScrollViewer>
 </Window>
