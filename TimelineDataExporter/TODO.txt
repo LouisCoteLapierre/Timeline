@@ -20,3 +20,9 @@ When the current column is Title, keypress checks title, if its start/end/geogra
 
 SIMPLE ONES:
 Show amount of entries
+
+Ressources for Unreal:
+https://www.youtube.com/watch?v=_7TQynJ_TrQ
+https://docs.unrealengine.com/5.0/en-US/how-to-generate-unreal-engine-project-files-for-your-ide/
+https://app.quicktype.io/	
+https://github.com/nlohmann/json#integration
