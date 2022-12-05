@@ -22,6 +22,8 @@ namespace TimelineDataExporter.Windows
         public DataWindow()
         {
             InitializeComponent();
+
+            UpdateNumberOfEntries();
         }
 
         // WPF Callbacks
@@ -130,6 +132,8 @@ namespace TimelineDataExporter.Windows
 
             // Update the model
             HistoricPeriodsModel.Instance.AddEntry(newTimelineEvent);
+
+            UpdateNumberOfEntries();
         }
 
         private void OnClearDataButtonClicked(object sender, RoutedEventArgs e)
@@ -199,6 +203,8 @@ namespace TimelineDataExporter.Windows
                 {
                     HistoricPeriodsModel.Instance.RemoveEntry(selectedEvent);
                 }
+
+                UpdateNumberOfEntries();
             }
             else if (args.Key >= Key.A && args.Key <= Key.Z)
             {
@@ -254,6 +260,12 @@ namespace TimelineDataExporter.Windows
 
             // Always the first selected index by default
             comboBox.SelectedIndex = 0;
+        }
+
+        private void UpdateNumberOfEntries()
+        {
+            int numberOfEntries = DataGrid.Items.Count;
+            NumberOfEntries.Content = "Number of Entries: " + numberOfEntries;
         }
     }
 }
