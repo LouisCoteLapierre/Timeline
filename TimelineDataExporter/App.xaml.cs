@@ -60,8 +60,8 @@ namespace TimelineDataExporter
                 {
                     if (String.Compare(noExtensionFileName, categoryName) == 0)
                     {
-                        var serializedTimelineEvents = HistoricPeriodsModel.Instance.HistoricPeriods[(TimelineHistoricPeriod)Enum.Parse(typeof(TimelineHistoricPeriod), noExtensionFileName)];
-                        File.WriteAllText(txtFilePath, JsonConvert.SerializeObject(serializedTimelineEvents));  
+                        var historicPeriod = HistoricPeriodsModel.Instance.HistoricPeriods[(TimelineHistoricPeriod)Enum.Parse(typeof(TimelineHistoricPeriod), noExtensionFileName)];
+                        File.WriteAllText(txtFilePath, JsonConvert.SerializeObject(historicPeriod));  
                     }
                   }
             }
